@@ -21,8 +21,7 @@ width,height=unicorn.get_shape()
 def step(picture):
     for h in range(height):
         for w in range(width):
-            hPos = (i+h) % len(picture)
-            chr = picture[hPos][w]
+            chr = picture[h][w]
             unicorn.set_pixel(w, h, chr, 0, 0)
     unicorn.show()
 
