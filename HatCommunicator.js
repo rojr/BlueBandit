@@ -34,7 +34,7 @@ function HatCommunicator(pin) {
       data.push(jArray);
     }
 
-    fs.appendFile('mynewfile1.txt', JSON.stringify(data) + "\n", function (err) {
+    fs.appendFile('testFile', JSON.stringify(data) + "\n", function (err) {
     if (err) throw err;
     });
   };
