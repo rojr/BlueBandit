@@ -13,6 +13,19 @@ def follow(thefile):
             continue
         yield line
 
+unicorn.set_layout(unicorn.HAT)
+unicorn.rotation(0)
+unicorn.brightness(0.5)
+width,height=unicorn.get_shape()
+
+def step(picture):
+    for h in range(height):
+        for w in range(width):
+            hPos = (i+h) % len(picture)
+            chr = picture[hPos][w]
+            unicorn.set_pixel(w, h, chr, 0, 0)
+    unicorn.show()
+
 # Example use
 # Note : This example requires the use of an apache log simulator.
 #
@@ -27,18 +40,4 @@ if __name__ == '__main__':
     loglines = follow(logfile)
     for line in loglines:
         step(json.loads(line))
-        print line,
-
-
-unicorn.set_layout(unicorn.HAT)
-unicorn.rotation(0)
-unicorn.brightness(0.5)
-width,height=unicorn.get_shape()
-
-def step(picture):
-    for h in range(height):
-        for w in range(width):
-            hPos = (i+h) % len(picture)
-            chr = picture[hPos][w]
-            unicorn.set_pixel(w, h, chr, 0, 0)
-    unicorn.show()
+        print line
