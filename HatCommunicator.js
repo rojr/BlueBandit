@@ -29,7 +29,7 @@ function HatCommunicator(pin) {
     for (var i = 0; i < 8; i++) {
       var jArray = [];
       for (var j = 0; j < 8; j++) {
-        jArray.push(Math.random() * 255);
+        jArray.push(Math.round(Math.random() * 255));
       }
       data.push(jArray);
     }
