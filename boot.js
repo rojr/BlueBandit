@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 var HatCommunicator = require('./HatCommunicator');
 
-setInterval(loop, 250);
+setInterval(loop, 15);
 
-var boii = new HatCommunicator(2);
-boii.createProcess();
+var hat = new HatCommunicator(2);
+hat.createProcess();
 
 function loop() {
-  boii.calculateTotals();
+  hat.calculateTotals();
 };

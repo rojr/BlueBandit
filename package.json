@@ -1,0 +1,6 @@
+{
+  "name":"Blue Bandit",
+  "dependencies": {
+    "onoff": "^1.1.8"
+  }
+}

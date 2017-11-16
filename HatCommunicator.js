@@ -41,6 +41,10 @@ function HatCommunicator(pin) {
     });
   };
 
+  this.write(obj) {
+    
+  }
+
   return this;
 
 };
