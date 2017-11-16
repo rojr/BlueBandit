@@ -24,15 +24,19 @@ function HatCommunicator(pin) {
     }
   };
 
+  this.i = 0;
   this.calculateTotals = function() {
     var data = [];
     for (var i = 0; i < 8; i++) {
       var jArray = [];
       for (var j = 0; j < 8; j++) {
-        jArray.push(Math.round(Math.random() * 255));
+        if (j == self.i % 8) {
+          jArray.push(Math.round(Math.random() * 255));
+        }
       }
       data.push(jArray);
     }
+    self.i++;
 
     fs.appendFile('testFile', JSON.stringify(data) + "\n", function (err) {
     if (err) throw err;
