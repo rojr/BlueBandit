@@ -1,6 +1,10 @@
 {
-  "name":"Blue Bandit",
+  "name": "blue-bandit",
+  "scripts": {
+    "start": "src/boot.js"
+  },
   "dependencies": {
-    "onoff": "^1.1.8"
+    "onoff": "^1.1.8",
+    "shelljs": "^0.7.8"
   }
 }
