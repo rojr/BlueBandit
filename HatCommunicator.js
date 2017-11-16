@@ -27,7 +27,7 @@ function HatCommunicator(pin) {
       var jArray = [];
       for (var j = 0; j < 8; j++) {
         if (j == self.i % 8) {
-          jArray.push(Math.round(Math.random() * 255));
+          jArray.push(255);
         } else {
           jArray.push(0);
         }
