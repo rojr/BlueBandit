@@ -12,16 +12,20 @@ function HatCommunicator(pin) {
     if (!this.process) {
       this.process = spawn('python', ['./python/HAT.py']);
 
+      this.process.stdout.on('data', function(data){
+        self.dataString += data.toString();
+
+        console.log('Sum of numbers=',data.toString());
+      });
       this.process.stdout.on('end', function(){
-        self.process = null;
+        console.log('Sum of numbers=',self.dataString);
+        self.dataString = '';
       });
     }
   };
 
   this.i = 0;
   this.calculateTotals = function() {
-    if (!self.process) self.createProcess();
-
     var data = [];
     for (var i = 0; i < 8; i++) {
       var jArray = [];
