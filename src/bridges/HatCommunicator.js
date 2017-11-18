@@ -14,7 +14,7 @@ function HatCommunicator(pin) {
 
   function createProcess() {
     if (!self.process) {
-      self.process = spawn('python', [__dirname + './python/HAT.py']);
+      self.process = spawn('python', [__dirname + './python/HAT.py ' + this.commFile]);
       self.process.on('exit', function() {
         self.process = null;
       });

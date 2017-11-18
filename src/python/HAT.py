@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 
 import time
+import sys
 import unicornhat as unicorn
 import json
+
+file = sys.argv[1];
 
 def follow(thefile):
     thefile.seek(0,2)
@@ -35,7 +38,7 @@ def step(picture):
 #
 
 if __name__ == '__main__':
-    logfile = open("testFile","r")
+    logfile = open(file,"r")
     loglines = follow(logfile)
     for line in loglines:
         step(json.loads(line))
