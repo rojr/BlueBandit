@@ -23,7 +23,11 @@ function HatCommunicator(pin) {
       });
 
       self.process.stdout.on('data', function(data) {
-        console.log(data);
+        console.log(data.toString());
+      });
+
+      self.process.stderr.on('data', function(code) {
+        console.log('closing code: ' + code);
       });
     }
   };
