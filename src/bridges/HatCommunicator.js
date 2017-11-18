@@ -37,7 +37,7 @@ function HatCommunicator(pin) {
   this.write = function(obj) {
     if (!self.process) createProcess();
 
-    fs.appendFile(this.commFile, JSON.stringify(obj));
+    fs.appendFile(self.commFile, JSON.stringify(obj) + "\n");
   }
 
   return this;
