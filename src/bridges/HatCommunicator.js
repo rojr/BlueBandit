@@ -14,8 +14,10 @@ function HatCommunicator(pin) {
 
   function createProcess() {
     if (!self.process) {
+      var procPath = __dirname + './python/HAT.py ' + this.commFile;
       self.process = spawn('python', [__dirname + './python/HAT.py ' + this.commFile]);
-      self.process.on('exit', function() {
+      self.process.on('exit', function(response) {
+        console.log('Process died... ' + response);
         self.process = null;
       });
     }
@@ -33,6 +35,7 @@ function HatCommunicator(pin) {
 
   this.write = function(obj) {
     if (!self.process) createProcess();
+
     fs.appendFile(this.commFile, JSON.stringify(obj));
   }
 
