@@ -25,7 +25,7 @@ def step(picture):
     for h in range(height):
         for w in range(width):
             chr = picture[h][w]
-            unicorn.set_pixel(w, h, chr, 0, 0)
+            unicorn.set_pixel(w, h, chr[0], chr[1], chr[2])
     unicorn.show()
 
 # Example use
