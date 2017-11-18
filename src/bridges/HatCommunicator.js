@@ -21,6 +21,10 @@ function HatCommunicator(pin) {
         console.log('Process died... ' + response);
         self.process = null;
       });
+
+      self.process.stdout.on('data', function(data) {
+        console.log(data);
+      });
     }
   };
 
