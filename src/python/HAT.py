@@ -9,7 +9,7 @@ file = sys.argv[1];
 
 def follow(thefile):
     thefile.seek(0,2)
-    while True:
+    while true:
         line = thefile.readline()
         if not line:
             time.sleep(0.015)

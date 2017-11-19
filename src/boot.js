@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 var HatCommunicator = require('./bridges/HatCommunicator');
 
-setInterval(loop, 15);
+setInterval(loop, 45);
 
 var hat = new HatCommunicator(2);
 hat.spawn();
@@ -14,7 +14,7 @@ function loop() {
        var jArray = [];
        for (var j = 0; j < 8; j++) {
          if (j == incc % 8) {
-           jArray.push([Math.floor(Math.random() * 255), Math.floor(Math.random() * 255), Math.floor(Math.random() * 255)]);
+           jArray.push([Math.floor(Math.random() * 200) + 55, Math.floor(Math.random() * 200) + 55, Math.floor(Math.random() * 200) + 55]);
          } else {
            jArray.push([0,0,0]);
          }
