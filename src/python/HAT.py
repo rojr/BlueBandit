@@ -41,4 +41,5 @@ if __name__ == '__main__':
     logfile = open(file,"r")
     loglines = follow(logfile)
     for line in loglines:
-        step(json.loads(line))
+        try:
+            step(json.loads(line))
