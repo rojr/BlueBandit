@@ -13,3 +13,9 @@ body {
   flex-wrap: nowrap;
   justify-content: center;
 }
+
+.js-display-outer {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
