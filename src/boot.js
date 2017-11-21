@@ -8,7 +8,7 @@ function load() {
 
   for (var i = 0; i < 8; i++) {
     for (var j = 0; j < 8; j++) {
-      var rgb = hexToRgb();
+      var rgb = hexToRgb(data[i][j]);
       data[i][j] = [rgb.r, rgb.b, rgb.g];
     }
   }
