@@ -3,7 +3,7 @@ var HatCommunicator = require('./bridges/HatCommunicator');
 
 var hat = new HatCommunicator(2);
 
-var data = [["#FF1141","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FF1141"],["#FF1141","#FFFFFF","#FFFFFF","#123456","#FFFFFF","#FFFFFF","#FFFFFF","#123456"],["#FF1141","#FFFFFF","#FFFFFF","#123456","#123456","#123456","#123456","#123456"],["#FF1141","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FFFFFF","#FF1141"],["#FF1141","#FFFFFF","#FFFFFF","#123456","#FFFFFF","#FFFFFF","#123456","#123456"],["#123456","#FF1141","#FF1141","#123456","#FF1141","#FFFFFF","#FFFFFF","#123456"],["#FF1141","#FF1141","#123456","#FF1141","#FF1141","#FF1141","#FFFFFF","#FF1141"],["#FF1141","#FF1141","#FF1141","#FF1141","#FF1141","#FF1141","#FF1141","#FF1141"]];
+var data = [["#FF1141","#FF1141","#FF1141","#FF1141","#FF1141","#FF1141","#FF1141","#FF1141"],["#FF1141","#FF1141","#beeeef","#FF1141","#FF1141","#FF1141","#beeeef","#FF1141"],["#FF1141","#FF1141","#FF1141","#FF1141","#FF1141","#FF1141","#FF1141","#FF1141"],["#FF1141","#FF1141","#FF1141","#FF1141","#beeeef","#FF1141","#FF1141","#FF1141"],["#FF1141","#FF1141","#FFFFFF","#FF1141","#FF1141","#FF1141","#FF1141","#FF1141"],["#FF1141","#FF1141","#FF1141","#FF1141","#FF1141","#FF1141","#FF1141","#FF1141"],["#FF1141","#FF1141","#FF1141","#FF1141","#FF1141","#FF1141","#FFFFFF","#FF1141"],["#beeeef","#FF1141","#FF1141","#FF1141","#FF1141","#FF1141","#FF1141","#FF1141"]];
 
 for (var i = 0; i < 8; i++) {
   for (var j = 0; j < 8; j++) {
