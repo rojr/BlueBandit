@@ -4,7 +4,7 @@ function Animator() {
   this.cWidth = this.canvas.width;
   this.cHeight = this.canvas.height;
 
-  this.selectedColour = '#123456';
+  this.selectedColour = '#beeeef';
 
   this.mouseX = 0, mouseY = 0;
   this.hoverX = -1, hoverY = -1;
