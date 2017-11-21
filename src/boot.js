@@ -13,6 +13,7 @@ function load() {
     }
   }
   hat.spawn();
+  hat.write(data);
   setInterval(loop, 45);
 }
 
