@@ -43,3 +43,5 @@ if __name__ == '__main__':
     for line in loglines:
         try:
             step(json.loads(line))
+        except ValueError:
+            print 'Error hmm';
