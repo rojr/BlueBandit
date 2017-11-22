@@ -19,3 +19,30 @@ body {
   flex-wrap: nowrap;
   justify-content: center;
 }
+
+.js-display-outer canvas {
+  border: 1px solid white;
+}
+
+.js-display-outer #color-picker {
+  height: 32px;
+  padding: 12px;
+  font-size:24px;
+  margin-left:12px;
+  margin-bottom: 12px;
+}
+
+.js-display-outer .colour-list {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+
+.js-display-outer .colour-list .colour {
+  margin: 9px;
+  position: relative;
+  height: 32px;
+  width: 32px;
+  cursor: pointer;
+  background-colour:attr(colour);
+}

@@ -11,14 +11,14 @@ function Animator() {
   this.blockWidth = 0, blockHeight = 0;
 
   this.data = [
-    ['#FF1141','#FF1141','#FF1141','#FF1141','#FF1141','#FF1141','#FF1141','#FF1141'],
-    ['#FF1141','#FF1141','#FF1141','#FF1141','#FF1141','#FF1141','#FF1141','#FF1141'],
-    ['#FF1141','#FF1141','#FF1141','#FF1141','#FF1141','#FF1141','#FF1141','#FF1141'],
-    ['#FF1141','#FF1141','#FF1141','#FF1141','#FF1141','#FF1141','#FF1141','#FF1141'],
-    ['#FF1141','#FF1141','#FFFFFF','#FF1141','#FF1141','#FF1141','#FF1141','#FF1141'],
-    ['#FF1141','#FF1141','#FF1141','#FF1141','#FF1141','#FF1141','#FF1141','#FF1141'],
-    ['#FF1141','#FF1141','#FF1141','#FF1141','#FF1141','#FF1141','#FFFFFF','#FF1141'],
-    ['#FF1141','#FF1141','#FF1141','#FF1141','#FF1141','#FF1141','#FF1141','#FF1141'],
+    ['#000000','#000000','#000000','#000000','#000000','#000000','#000000','#000000'],
+    ['#000000','#000000','#000000','#000000','#000000','#000000','#000000','#000000'],
+    ['#000000','#000000','#000000','#000000','#000000','#000000','#000000','#000000'],
+    ['#000000','#000000','#000000','#000000','#000000','#000000','#000000','#000000'],
+    ['#000000','#000000','#000000','#000000','#000000','#000000','#000000','#000000'],
+    ['#000000','#000000','#000000','#000000','#000000','#000000','#000000','#000000'],
+    ['#000000','#000000','#000000','#000000','#000000','#000000','#000000','#000000'],
+    ['#000000','#000000','#000000','#000000','#000000','#000000','#000000','#000000'],
   ];
 
   this.canvas.addEventListener('mousemove', function(evt) {
@@ -31,6 +31,25 @@ function Animator() {
     this.hoverY = Math.floor(this.mouseY / this.blockHeight);
 
     this.reDraw();
+
+    this.ctx.beginPath();
+    this.ctx.moveTo(0, this.mouseY);
+    this.ctx.lineTo(this.cHeight, this.mouseY);
+    this.ctx.lineWidth = 2;
+
+    // set line color
+    this.ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+    this.ctx.stroke();
+
+    this.ctx.beginPath();
+    this.ctx.moveTo(this.mouseX, 0);
+    this.ctx.lineTo(this.mouseX, this.cWidth);
+    this.ctx.lineWidth = 2;
+
+    // set line color
+    this.ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+    this.ctx.stroke();
+
   }.bind(this));
 
   this.canvas.addEventListener('click', function(e) {
@@ -71,7 +90,7 @@ function Animator() {
         this.ctx.fillRect(i * this.blockWidth, j * this.blockHeight, i*this.blockWidth+this.blockWidth, j*this.blockHeight+this.blockHeight);
 
         if (i == this.hoverX && j == this.hoverY) {
-          this.ctx.fillStyle = 'rgba(0,0,0,0.3)';
+          this.ctx.fillStyle = 'rgba(255,255,255,0.3)';
           this.ctx.fillRect(this.hoverX * this.blockWidth, this.hoverY * this.blockHeight, this.hoverX*this.blockWidth+this.blockWidth, this.hoverY*this.blockHeight+this.blockHeight);
         }
       }
