@@ -5,10 +5,14 @@ function Animator() {
   this.cHeight = this.canvas.height;
 
   this.selectedColour = '#beeeef';
+  this.colourInput = document.querySelector('#color-picker');
+  this.colourInput.value = this.selectedColour;
 
   this.mouseX = 0, mouseY = 0;
   this.hoverX = -1, hoverY = -1;
   this.blockWidth = 0, blockHeight = 0;
+
+  var self = this;
 
   this.data = [
     ['#000000','#000000','#000000','#000000','#000000','#000000','#000000','#000000'],
@@ -52,12 +56,16 @@ function Animator() {
 
   }.bind(this));
 
+  this.colourInput.addEventListener('change', function() {
+    self.selectedColour = this.value;
+  });
+
   this.canvas.addEventListener('click', function(e) {
     this.setColourOn(this.hoverX, this.hoverY, this.selectedColour);
   }.bind(this));
 
   this.canvas.addEventListener('contextmenu', function(e) {
-    this.setColourOn(this.hoverX, this.hoverY, '#FFFFFF');
+    this.setColourOn(this.hoverX, this.hoverY, '#000000');
 
     e.preventDefault();
     return false;
