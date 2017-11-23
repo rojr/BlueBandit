@@ -6,6 +6,7 @@ function Animator() {
 
   this.selectedColour = '#beeeef';
   this.colourInput = document.querySelector('#color-picker');
+  this.colourList = document.querySelector('#colour-list');
   this.colourInput.value = this.selectedColour;
 
   this.mouseX = 0, mouseY = 0;
@@ -85,6 +86,18 @@ function Animator() {
     }
   };
 
+  this.initiate = function() {
+    var add = '<div class="colour" colour="ffbbbb"></div>';
+    var colours = ['124', '321', 'FE0'];
+
+    for (var i = 0, end = colours.length; i < end; i++) {
+      var colourBlock = document.createElement('div');
+      colourBlock.classList.add('colour');
+      colourBlock.style.background = '#' + colours[i];
+      this.colourList.appendChild(colourBlock);
+    }
+  }.bind(this);
+
   this.reDraw = function () {
     this.ctx.fillStyle = 'rgb(255,255,255)';
     this.ctx.fillRect(0, 0, this.cWidth, this.cHeight);
@@ -110,4 +123,5 @@ function Animator() {
 }
 
 var animator = new Animator();
+animator.initiate();
 animator.reDraw();

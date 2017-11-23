@@ -32,14 +32,14 @@ body {
   margin-bottom: 12px;
 }
 
-.js-display-outer .colour-list {
+#colour-list {
   display: flex;
   justify-content: center;
   flex-flow: row wrap;
 }
 
-.js-display-outer .colour-list .colour {
-  margin: 9px;
+#colour-list .colour {
+  margin: 2px;
   position: relative;
   height: 32px;
   width: 32px;
