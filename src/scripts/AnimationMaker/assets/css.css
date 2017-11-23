@@ -22,6 +22,8 @@ body {
 
 .js-display-outer canvas {
   border: 1px solid white;
+  max-width: 512px;
+  max-height: 512px;
 }
 
 .js-display-outer #color-picker {
@@ -36,6 +38,7 @@ body {
   display: flex;
   justify-content: center;
   flex-flow: row wrap;
+  max-width: 300px;
 }
 
 #colour-list .colour {
@@ -45,4 +48,16 @@ body {
   width: 32px;
   cursor: pointer;
   background-colour:attr(colour);
+}
+
+#layer-list {
+  width:64px;
+  height: 512px;
+  margin-right:12px;
+  border: 1px solid white;
+}
+
+#layer-list canvas {
+  width: 64px;
+  height: 64px;
 }

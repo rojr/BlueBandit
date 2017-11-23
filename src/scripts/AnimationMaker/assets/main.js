@@ -1,19 +1,6 @@
-function Animator() {
-  this.canvas = document.querySelector('#js-main-render');
-  this.ctx = this.canvas.getContext('2d');
-  this.cWidth = this.canvas.width;
-  this.cHeight = this.canvas.height;
-
-  this.selectedColour = '#beeeef';
-  this.colourInput = document.querySelector('#color-picker');
-  this.colourList = document.querySelector('#colour-list');
-  this.colourInput.value = this.selectedColour;
-
-  this.mouseX = 0, mouseY = 0;
-  this.hoverX = -1, hoverY = -1;
-  this.blockWidth = 0, blockHeight = 0;
-
-  var self = this;
+function Layer (id) {
+  this.id = id;
+  this.canvas = null;
 
   this.data = [
     ['#000000','#000000','#000000','#000000','#000000','#000000','#000000','#000000'],
@@ -26,16 +13,61 @@ function Animator() {
     ['#000000','#000000','#000000','#000000','#000000','#000000','#000000','#000000'],
   ];
 
+  return this;
+};
+
+function Animator() {
+  this.canvas = document.querySelector('#js-main-render');
+  this.ctx = this.canvas.getContext('2d');
+  this.cWidth = this.canvas.width;
+  this.cHeight = this.canvas.height;
+
+  this.selectedColour = '#beeeef';
+  this.colourInput = document.querySelector('#color-picker');
+  this.colourList = document.querySelector('#colour-list');
+  this.layerList = document.querySelector('#layer-list');
+
+  this.colourInput.value = this.selectedColour;
+
+  this.mouseX = 0, mouseY = 0;
+  this.hoverX = -1, hoverY = -1;
+  this.blockWidth = 0, blockHeight = 0;
+
+  this.layers = [];
+  this.currentLayer = null;
+
+  var self = this;
+
+  this.addLayer = function() {
+    var layer = new Layer(this.layers.length);
+    this.layers.push(layer);
+
+    layer.canvas = document.createElement('canvas');
+    layer.canvas.setAttribute('width', 64);
+    layer.canvas.setAttribute('height', 64);
+    this.layerList.appendChild(layer.canvas);
+
+    this.reDrawThumbnail(layer);
+
+    return layer;
+  }
+
+  this.reDrawThumbnail = function(layer) {
+    var c = layer.canvas.getContext('2d');;
+
+    this.updateBoard(c, 8, layer.data);
+  }
+
   this.canvas.addEventListener('mousemove', function(evt) {
     var rect = this.canvas.getBoundingClientRect();
 
     this.mouseX = evt.clientX - rect.left;
     this.mouseY = evt.clientY - rect.top;
 
-    this.hoverX = Math.floor(this.mouseX / this.blockWidth);
-    this.hoverY = Math.floor(this.mouseY / this.blockHeight);
+    this.hoverX = Math.floor(this.mouseX / 64);
+    this.hoverY = Math.floor(this.mouseY / 64);
 
-    this.reDraw();
+    this.reDraw(this.currentLayer);
 
     this.ctx.beginPath();
     this.ctx.moveTo(0, this.mouseY);
@@ -80,9 +112,9 @@ function Animator() {
   }.bind(this));
 
   this.setColourOn = function(x, y, colour) {
-    this.data[x][y] = colour;
-    this.reDraw();
-
+    this.currentLayer.data[x][y] = colour;
+    this.reDraw(this.currentLayer);
+    this.reDrawThumbnail(this.currentLayer);
   }
 
   this.clear = function() {
@@ -104,6 +136,8 @@ function Animator() {
       colourBlock.setAttribute('colour', '#' + colours[i]);
       this.colourList.appendChild(colourBlock);
     }
+
+    this.currentLayer = this.addLayer();
   }.bind(this);
 
   this.setSelectedColour = function(colour) {
@@ -111,30 +145,34 @@ function Animator() {
     this.colourInput.value = colour;
   };
 
-  this.reDraw = function () {
+  this.reDraw = function (layer) {
+    var bHei = layer.canvas.height,
+      bWid = layer.canvas.width;
+
     this.ctx.fillStyle = 'rgb(255,255,255)';
-    this.ctx.fillRect(0, 0, this.cWidth, this.cHeight);
+    this.ctx.fillRect(0, 0, bWid, bHei);
 
-    for (var i = 0, iE = this.data.length; i < iE; i++) {
-      this.blockWidth = width = this.cWidth / iE;
-      this.blockHeight = this.cHeight / this.data[i].length;
+    this.updateBoard(this.ctx, 64, layer.data);
 
-      for (var j = 0, jE = this.data[i].length; j < jE; j++) {
-        this.ctx.fillStyle = this.data[i][j];
-        this.ctx.fillRect(i * this.blockWidth, j * this.blockHeight, i*this.blockWidth+this.blockWidth, j*this.blockHeight+this.blockHeight);
+  }.bind(this);
+
+  this.updateBoard = function(ctx, blockSize, data) {
+    for (var i = 0, iE = data.length; i < iE; i++) {
+      for (var j = 0, jE = data[i].length; j < jE; j++) {
+        ctx.fillStyle = data[i][j];
+        ctx.fillRect(i * blockSize, j * blockSize, (i+1)*blockSize, (j+1)*blockSize);
 
         if (i == this.hoverX && j == this.hoverY) {
-          this.ctx.fillStyle = 'rgba(255,255,255,0.3)';
-          this.ctx.fillRect(this.hoverX * this.blockWidth, this.hoverY * this.blockHeight, this.hoverX*this.blockWidth+this.blockWidth, this.hoverY*this.blockHeight+this.blockHeight);
+          ctx.fillStyle = 'rgba(255,255,255,0.3)';
+          ctx.fillRect(i * blockSize, j * blockSize, (i+1)*blockSize, (j+1)*blockSize);
         }
       }
     }
-
-  }.bind(this);
+  }
 
   return this;
 }
 
 var animator = new Animator();
 animator.initiate();
-animator.reDraw();
+animator.reDraw(animator.currentLayer);
