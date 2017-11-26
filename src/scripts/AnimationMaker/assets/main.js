@@ -157,6 +157,30 @@ function Animator() {
     this.addNewLayerButton.addEventListener('click', function() {
       this.selectLayer(this.addLayer());
     }.bind(this));
+
+    this.saveButton.addEventListener('click', function() {
+      var dataString = document.querySelector('#data-string');
+      var cleanData = [];
+      for (var l = 0, lE = this.layers.length; l < lE; l++) {
+        for (var i = 0, iE = this.layers[l].data.length; i < iE; i++) {
+          for (var j = 0, jE = this.layers[l].data[i].length; j < jE; j++) {
+            var colour = hexToRgb(this.layers[l].data[i][j]);
+            if (!cleanData[l]) {
+              cleanData[l] = [];
+            }
+
+            if (!cleanData[l][i]) {
+              cleanData[l][i] = [];
+            }
+
+            cleanData[l][i][j] = [colour.r, colour.g, colour.b];
+          }
+        }
+      }
+      console.log(JSON.stringify(cleanData));
+      dataString.select();
+      document.execCommand('Copy');
+    }.bind(this));
   }.bind(this);
 
   this.setSelectedColour = function(colour) {
@@ -190,6 +214,21 @@ function Animator() {
   }
 
   return this;
+}
+
+function hexToRgb(hex) {
+    // Expand shorthand form (e.g. "03F") to full form (e.g. "0033FF")
+    var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+    hex = hex.replace(shorthandRegex, function(m, r, g, b) {
+        return r + r + g + g + b + b;
+    });
+
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
 }
 
 var animator = new Animator();
