@@ -26,6 +26,8 @@ function Animator() {
   this.colourInput = document.querySelector('#color-picker');
   this.colourList = document.querySelector('#colour-list');
   this.layerList = document.querySelector('#layer-list');
+  this.addNewLayerButton = document.querySelector('#add-new-button');
+  this.saveButton = document.querySelector('#save');
 
   this.colourInput.value = this.selectedColour;
 
@@ -45,11 +47,24 @@ function Animator() {
     layer.canvas = document.createElement('canvas');
     layer.canvas.setAttribute('width', 64);
     layer.canvas.setAttribute('height', 64);
+    layer.canvas.addEventListener('click', function() {
+      this.selectLayer(layer);
+    }.bind(this));
     this.layerList.appendChild(layer.canvas);
 
     this.reDrawThumbnail(layer);
 
     return layer;
+  }
+
+  this.selectLayer = function(layer) {
+    if (this.currentLayer) {
+      this.currentLayer.canvas.classList.remove('selected');
+    }
+
+    this.currentLayer = layer;
+    this.currentLayer.canvas.classList.add('selected');
+    this.reDraw(layer);
   }
 
   this.reDrawThumbnail = function(layer) {
@@ -137,7 +152,11 @@ function Animator() {
       this.colourList.appendChild(colourBlock);
     }
 
-    this.currentLayer = this.addLayer();
+    this.selectLayer(this.addLayer());
+
+    this.addNewLayerButton.addEventListener('click', function() {
+      this.selectLayer(this.addLayer());
+    }.bind(this));
   }.bind(this);
 
   this.setSelectedColour = function(colour) {
