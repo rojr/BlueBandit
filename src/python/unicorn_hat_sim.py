@@ -18,7 +18,7 @@ class UnicornHatSim(object):
         self.rotation_offset = rotation_offset
         self.rotation(0)
         self.pixels = [(0, 0, 0)] * width * height
-        self.pixel_size = 15
+        self.pixel_size = 30
         self.width = width
         self.height = height
         self.window_width = width * self.pixel_size
@@ -111,4 +111,3 @@ unicornphat = UnicornHatSim(8, 4)
 
 # Unicornhat HD seems to be the other way around (not that there's anything wrong with that), so we rotate it 180°
 unicornhathd = UnicornHatSim(16, 16, 180)
-
