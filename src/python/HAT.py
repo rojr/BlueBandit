@@ -2,7 +2,11 @@
 
 import time
 import sys
-import unicornhat as unicorn
+try:
+    import unicornhat as unicorn
+    print("unicorn hat hd detected")
+except ImportError:
+    from unicorn_hat_sim import unicornhat as unicorn
 import json
 
 file = sys.argv[1];
@@ -16,8 +20,8 @@ def follow(thefile):
             continue
         yield line
 
-unicorn.set_layout(unicorn.HAT)
-unicorn.rotation(0)
+#unicorn.set_layout(unicorn.HAT)
+unicorn.rotation(90)
 unicorn.brightness(0.5)
 width,height=unicorn.get_shape()
 
