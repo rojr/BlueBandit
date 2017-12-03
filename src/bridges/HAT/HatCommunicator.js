@@ -15,9 +15,9 @@ function HatCommunicator(pin) {
 
   function createProcess() {
     if (!self.process) {
-      var procPath = __dirname + './python/HAT.py ' + self.commFile;
+      var procPath = __dirname + '/../../python/HAT.py ' + self.commFile;
       console.log(procPath);
-      self.process = spawn('python', [path.join(__dirname, '..', 'python', 'HAT.py'), self.commFile]);
+      self.process = spawn('python', [path.join(__dirname, '..', '..', 'python', 'HAT.py'), self.commFile]);
       self.process.on('exit', function(response) {
         console.log('Process died... ' + response);
         self.process = null;
