@@ -79,8 +79,8 @@ function Animator() {
     this.mouseX = evt.clientX - rect.left;
     this.mouseY = evt.clientY - rect.top;
 
-    this.hoverX = Math.floor(this.mouseX / 64);
-    this.hoverY = Math.floor(this.mouseY / 64);
+    this.hoverX = Math.floor(this.mouseX / 32);
+    this.hoverY = Math.floor(this.mouseY / 32);
 
     this.reDraw(this.currentLayer);
 
@@ -195,7 +195,7 @@ function Animator() {
     this.ctx.fillStyle = 'rgb(255,255,255)';
     this.ctx.fillRect(0, 0, bWid, bHei);
 
-    this.updateBoard(this.ctx, 64, layer.data);
+    this.updateBoard(this.ctx, 32, layer.data);
 
   }.bind(this);
 

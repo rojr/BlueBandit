@@ -3,10 +3,10 @@
 import time
 import sys
 try:
-    import unicornhat as unicorn
+    import unicornhathd as unicorn
     print("unicorn hat hd detected")
 except ImportError:
-    from unicorn_hat_sim import unicornhat as unicorn
+    from unicorn_hat_sim import unicornhathd as unicorn
 import json
 
 file = sys.argv[1];
